@@ -1,0 +1,83 @@
+enum Extensions {
+  png
+  jpg
+  jpeg
+  pdf
+}
+type AssetTemplate {
+  id:ID
+  title:String
+  description:String
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetails]
+  user:User
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetTemplateCreateInput {
+  id:ID
+  title:String
+  description:String
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetailsCreateInput]
+  userId:ID
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetTemplateUpdateInput {
+   title:String
+  description:String
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetailsCreateInput]
+  userId:ID
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetTemplateCreateWhereUniqueInput {
+  id:ID
+}
+
+input AssetTemplateCreateWhereInput{
+  id:ID
+  title:String
+  description:String
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetailsCreateInput]
+  userId:ID
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+type Query {
+  getAssetTemplate(where:AssetTemplateCreateWhereUniqueInput!):AssetTemplate!
+  getAssetTemplates(where:AssetTemplateCreateWhereInput):[AssetTemplate!]!
+}
+
+type Mutation {
+  createAssetTemplate(data:AssetTemplateCreateInput!):AssetTemplate!
+  updateAssetTemplate(data:AssetTemplateUpdateInput!,where:AssetTemplateCreateWhereUniqueInput!):AssetTemplate!
+  deleteAssetTemplate(where:AssetTemplateCreateWhereUniqueInput!):Boolean!
+}

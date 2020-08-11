@@ -1,0 +1,44 @@
+scalar JSON
+
+type Notification {
+  id:ID
+  title:String
+  content:String
+  senderId:ID
+  receiverId:ID
+  referenceId:ID
+  referenceData:JSON
+  route:String
+  isViewed:Boolean
+  createdAt:Date
+  updatedAt:Date
+}
+
+input NotificationCreateInput {
+  id:ID
+  title:String
+  content:String
+  senderId:ID
+  receiverId:ID
+  referenceId:ID
+  referenceData:JSON
+  route:String
+  isViewed:Boolean
+  createdAt:Date
+  updatedAt:Date
+}
+
+input NotificationCreateWhereUniqueInput{
+  id:ID
+}
+
+type Query {
+  getNotification(where:NotificationCreateWhereUniqueInput):Notification
+  getNotifications(where:NotificationCreateInput): [Notification]
+  countNotifications:Int
+}
+
+type Mutation {
+createNotification(data:NotificationCreateInput):Notification
+updateNotification(data:NotificationCreateInput,where:NotificationCreateWhereUniqueInput):Notification
+}

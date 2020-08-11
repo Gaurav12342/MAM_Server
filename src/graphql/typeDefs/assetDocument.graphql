@@ -1,0 +1,80 @@
+scalar Upload
+enum AssetLabel {
+  PRIMARY
+  DERIVATIVE
+}
+
+type AssetDocument{
+  id:ID
+  asset: Asset
+  assetRequest:AssetRequest
+  user:User
+  fileUrl:String
+  assetLabel:AssetLabel
+  createdAt:Date
+  updatedAt:Date
+}
+
+input AssetDocumentCreateInput {
+  id:ID
+  assetId:ID
+  assetRequestId:ID
+  userId:ID
+  fileUrl:Upload
+  assetLabel:AssetLabel
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+input AssetDocumentUpdateInput {
+  assetId:ID
+  assetRequestId:ID
+  userId:ID
+  fileUrl:Upload
+  assetLabel:AssetLabel
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetRequestDocumentCreateWhereUniqueInput {
+  id:ID
+}
+input AssetRequestDocumentCreateWhereInput {
+  id:ID
+  assetId:ID
+  assetRequestId:ID
+  userId:ID
+  fileUrl:Upload
+  assetLabel:AssetLabel
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+type assetDocumnetNotificationPayload {
+  id:ID
+  assetId:ID
+  assetRequestId:ID
+  userId:ID
+  fileUrl:Upload
+  assetLabel:AssetLabel
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+type Query {
+  getAssetDocument(where:AssetRequestDocumentCreateWhereUniqueInput!):AssetDocument!
+  getAssetDocuments(where:AssetRequestDocumentCreateWhereInput):[AssetDocument!]!
+}
+
+type Mutation {
+  createAssetDocument(data:AssetDocumentCreateInput!):AssetDocument!
+  updateAssetDocument(data:AssetDocumentUpdateInput!,where:AssetRequestDocumentCreateWhereUniqueInput!):AssetDocument!
+  deleteAssetDocument(where:AssetRequestDocumentCreateWhereUniqueInput!):Boolean!
+}
+
+type Subscription {
+  assetDocumentNotification:assetDocumnetNotificationPayload
+}

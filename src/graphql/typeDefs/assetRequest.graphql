@@ -1,0 +1,94 @@
+scalar Date
+scalar Upload
+scalar JSON
+
+type AssetRequest{
+  id:ID
+  title:String
+  description:String
+  deliveryDate:Date
+  fileUrls:[String]
+  brandColor:[BrandColor]
+  shareWith:[User]
+  assets:[Asset]
+  user: User
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetRequestCreateInput{
+  id:ID
+  title:String
+  description:String
+  deliveryDate:Date
+  fileUrls:[Upload]
+  brandColor:[BrandColorCreateInput]
+  shareWith:[String]
+  assets:[AssetCreateInput]
+  userId:ID
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetRequestCreateWhereUniqueInput {
+  id:ID
+}
+input AssetRequestCreateWhereInput{
+  id:ID
+  title:String
+  description:String
+  deliveryDate:Date
+  fileUrls:[Upload]
+  brandColor:[BrandColorCreateInput]
+  shareWith:[String]
+  assets:[AssetCreateInput]
+  userId:ID
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+input AssetRequestUpdateInput{
+  title:String
+  description:String
+  deliveryDate:Date
+  fileUrls:[Upload]
+  brandColor:[BrandColorCreateInput]
+  shareWith:[String]
+  assets:[AssetCreateInput]
+  userId:ID
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+type notificationPayload {
+  id:ID
+  title:String
+  description:String
+  deliveryDate:Date
+  fileUrls:[String]
+  brandColor:[BrandColor]
+  shareWith:[User]
+  assets:[Asset]
+  user: User
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+type Query {
+  getAssetRequest(where:AssetRequestCreateWhereUniqueInput!):AssetRequest!
+  getAssetRequests(where:AssetRequestCreateWhereInput):[AssetRequest!]!
+}
+
+type Mutation {
+  createAssetRequest(data:AssetRequestCreateInput!):AssetRequest!
+  updateAssetRequest(data:AssetRequestUpdateInput!,where:AssetRequestCreateWhereUniqueInput!):AssetRequest!
+  deleteAssetRequest(where:AssetRequestCreateWhereUniqueInput!):Boolean!
+}
+
+type Subscription {
+  notification:notificationPayload
+}

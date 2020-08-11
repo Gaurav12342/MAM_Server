@@ -1,0 +1,17 @@
+import { PubSub } from 'apollo-server-express'
+
+const pubsub = new PubSub()
+
+const pubsubTopics = {
+  CREATE_ASSET_REQUEST: "CREATE_ASSET_REQUEST",
+  UPDATE_ASSET_REQUEST: "UPDATE_ASSET_REQUEST",
+  CREATE_ASSET_DOCUMENT: "CREATE_ASSET_DOCUMENT",
+  UPDATE_ASSET_DOCUMENT: "UPDATE_ASSET_DOCUMENT",
+  CHANGE_PASSWORD: "CHANGE_PASSWORD",
+  FORFOT_PASSWORD: "FORGOT_PASSWORD"
+}
+
+export {
+  pubsub,
+  pubsubTopics
+}

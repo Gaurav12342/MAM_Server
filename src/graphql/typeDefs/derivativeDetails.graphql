@@ -1,0 +1,29 @@
+enum Extension {
+  png
+  jpg
+  bmp
+  jpeg
+  pdf
+}
+
+type DerivativeDetails {
+extensions:Extension
+maxFileSize:Float
+height:Float
+width:Float
+}
+
+input DerivativeDetailsCreateInput {
+extensions:Extension
+maxFileSize:Float
+height:Float
+width:Float
+}
+
+type Query {
+  getDerivativeDetails:[DerivativeDetails]
+}
+
+type Mutation {
+  createDerivativeDetails(data:DerivativeDetailsCreateInput):DerivativeDetails
+}

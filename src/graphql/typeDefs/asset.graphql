@@ -1,0 +1,100 @@
+scalar Upload
+enum Extensions {
+  png
+  jpg
+  jpeg
+  pdf
+}
+
+enum Status {
+  PENDING
+  WAITING
+  APPROVE
+  REJECT
+}
+
+type Asset {
+  id:ID
+  title:String
+  description:String
+  fileUrls:[String]
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetails]
+  userId: User
+  status:Status
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetCreateInput {
+  id:ID
+  title:String
+  description:String
+  fileUrls:[Upload]
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetailsCreateInput]
+  userId:ID
+  status:Status
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetUpdateInput {
+  title:String
+  description:String
+  fileUrls:[Upload]
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetailsCreateInput]
+  userId:ID
+  status:Status
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+input AssetCreateWhereUniqueInput {
+  id:ID
+}
+
+input AssetCreateWhereInput{
+  id:ID
+  title:String
+  description:String
+  fileUrls:[Upload]
+  extensions:Extensions
+  maxFileSize:Float
+  height:Float
+  width:Float
+  transparentBg:Boolean
+  derivativeDetails:[DerivativeDetailsCreateInput]
+  userId:ID
+  status:Status
+  createdAt:Date
+  updatedAt:Date
+  deletedAt:Date
+}
+
+type Query {
+  getAsset(where:AssetCreateWhereUniqueInput!):Asset!
+  getAssets(where:AssetCreateWhereInput):[Asset!]
+}
+
+type Mutation {
+  createAsset(data:AssetCreateInput!):Asset!
+  updateAsset(data:AssetUpdateInput!,where:AssetCreateWhereUniqueInput!):Asset!
+  deleteAsset(where:AssetCreateWhereUniqueInput!):Boolean!
+}

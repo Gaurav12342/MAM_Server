@@ -1,0 +1,17 @@
+type BrandColor {
+  colorCode:String
+  labelName:String
+}
+
+input BrandColorCreateInput {
+  colorCode:String
+  labelName:String
+}
+
+type Query {
+  getBrandColors:[BrandColor]
+}
+
+type Mutation {
+  createBrandColor(data:BrandColorCreateInput):BrandColor
+}
